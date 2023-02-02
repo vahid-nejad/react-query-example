@@ -6,21 +6,20 @@ export const PostQueryKey = "posts";
 const BASE_URL = "http://localhost:8000/test";
 
 const fetchUsers = async () => {
+  console.log("usssssrs");
+
   const res = await fetch(BASE_URL + "/users");
   return await res.json();
 };
 
 const fetchPostOfUsers = async (userId: number) => {
-  const res = await fetch(
-    `${BASE_URL}/user/${userId}/posts`
-  );
+  console.log("pooooots");
+
+  const res = await fetch(`${BASE_URL}/user/${userId}/posts`);
   return await res.json();
 };
 
-export const useUserQuery = () =>
-  useQuery<User[]>([usersQueryKey], fetchUsers);
+export const useUserQuery = () => useQuery<User[]>([usersQueryKey], fetchUsers);
 
 export const useUserPostQuery = (userId: number) =>
-  useQuery<Post[]>([PostQueryKey, userId], () =>
-    fetchPostOfUsers(userId)
-  );
+  useQuery<Post[]>([PostQueryKey, userId], () => fetchPostOfUsers(userId));
